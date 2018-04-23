@@ -1,0 +1,20 @@
+*** Settings ***
+Resource          ../Conf/conf_Shortcut_Sport.txt
+
+*** Keywords ***
+!description
+    [Arguments]    ${locator}
+    Element Should Be Visible    ${locator}
+    Element Should Contain    ${locator}/table/tbody/tr[1]/td    Classement :
+    Click Element    ${locator}/table/tbody/tr[1]/td/a
+    Select Window    NEW
+    Wait Until Page Contains    Sports    30
+    Location Should Contain    sports.orange.fr
+    Select Window    MAIN
+    Element Should Contain    ${locator}/table/tbody/tr[2]/td    Prochain match
+    Element Should Contain    ${locator}/table/tbody/tr[3]/td    Dernier match
+    Click Element    ${locator}/table/tbody/tr[3]/td/a
+    Select Window    NEW
+    Wait Until Page Contains    Sports    30
+    Location Should Contain    sports.orange.fr
+    Select Window    MAIN

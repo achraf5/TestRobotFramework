@@ -1,0 +1,4 @@
+*** Settings ***
+Resource          Function/function_shortcut_Tendance.txt
+
+*** Test Cases ***

@@ -1,0 +1,73 @@
+*** Settings ***
+Resource          ../Conf/conf_Shortcut_Boutique.txt
+
+*** Keywords ***
+!Price
+    [Arguments]    ${locator}
+    Element Should Be Visible    ${locator}    le block du prix n'est pas visible
+    Element Text Should Be    ${locator}/span[1]    à partir de
+    Element Should Contain    ${locator}/span[2]    €
+    Element Should Be Visible    ${locator}/div
+
+!Boutton_voir_offres
+    [Arguments]    ${locator}
+    Element Should Be Visible    ${locator}    le boutton "voir les offres" n'est pas visible
+    Element Text Should Be    ${locator}    voir les offres
+    Click Element    ${locator}
+    Sleep    10s
+    Select Window    NEW
+    Location Should Contain    boutique.orange.fr
+    Close Window
+    Select Window    MAIN
+
+!caracteristique_model
+    [Arguments]    ${locator}
+    Element Should Be Visible    ${locator}    les caractéristiques ne sont pas visibles
+    Element Text Should Be    ${locator}/span    Caractéristiques :
+    Xpath Should Match X Times    ${locator}/div    4
+
+!homepage_Url
+    [Arguments]    ${locator}
+    Element Should Be Visible    ${locator}
+    Element Text Should Be    ${locator}    boutique.orange.fr
+
+!siteLink
+    [Arguments]    ${locator}
+    ${count}    Get Matching Xpath Count    ${locator}/div[2]/div[4]/ul/li/a
+    Xpath Should Match X Times    ${locator}/div[2]/div[4]/ul/li/a    6
+    ${ligne}    Get Matching Xpath Count    ${locator}/div[2]/div[4]/ul
+    Log    il y'a ${ligne}
+    : FOR    ${li}    IN RANGE    1    ${ligne} +1
+    \    Log    ${li}
+    \    Click Element    ${locator}/div[2]/div[4]/ul[${li}]/li[1]/a
+    \    Select Window    NEW
+    \    Wait Until Page Contains    Boutique    30
+    \    Location Should Contain    boutique.orange.fr
+    \    #Close Window
+    \    Select Window    MAIN
+    \    Click Element    ${locator}/div[2]/div[4]/ul[${li}]/li[2]/a
+    \    Select Window    NEW
+    \    Wait Until Page Contains    Boutique    30
+    \    Location Should Contain    boutique.orange.fr
+    \    #Close Window
+    \    Select Window    MAIN
+    \    sleep    2s
+
+!description
+    [Arguments]    ${locator}
+    Element Should Be Visible    ${locator}
+
+!caracteristique_marque
+    [Arguments]    ${locator}
+    Element Should Be Visible    ${locator}/div[2]/div[3]/div
+    Xpath Should Match X Times    ${locator}/div[2]/div[3]/div/span    3
+    ${ligne}    Get Matching Xpath Count    ${locator}/div[2]/div[3]/div/span
+    : FOR    ${li}    IN RANGE    1    ${ligne}+1
+    \    Click Element    ${locator}/div[2]/div[3]/div/span[${li}]/a
+    \    Select Window    NEW
+    \    Wait Until Page Contains    Boutique    30
+    \    Location Should Contain    boutique.orange.fr
+    \    #Close Window
+    \    Select Window    MAIN
+    \    Element Should Contain    ${locator}/div[2]/div[3]/div/span[${li}]/span/span[1]    à partir de
+    \    Element Should Contain    ${locator}/div[2]/div[3]/div/span[${li}]/span    €

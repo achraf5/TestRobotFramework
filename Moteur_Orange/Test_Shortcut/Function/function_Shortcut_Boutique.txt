@@ -1,0 +1,43 @@
+*** Settings ***
+Resource          ../PageObject/pageObject_Shortcut_Boutique.txt
+
+*** Keywords ***
+verifier_shortcut_boutique_model
+    [Arguments]    ${kw}    ${locator}
+    Open Browser    https://lemoteur.orange.fr/?bhv=web_fr&kw=${kw}&module=orange&target=orange&suggest=on    FF
+    Block    ${locator}
+    Header    ${locator}/div[1]/span    BOUTIQUE ORANGE
+    Title    ${locator}/div[2]/div[1]/a    boutique.orange.fr
+    ImageTitle    ${locator}/div[1]/div
+    Image    ${locator}/div[2]/div[2]/a/img    boutique.orange.fr
+    #!Image_Produit    ${locator}/div[2]/div[2]/a/img
+    !Price    ${locator}/div[2]/div[3]/div[1]
+    !Boutton_voir_offres    ${locator}/div[2]/div[3]/div[3]/a
+    !caracteristique_model    ${locator}/div[2]/div[3]/div[2]
+    !homepage_Url    ${locator}/div[3]/div
+    Close Browser
+
+verifier_shortcut_boutique_forfait
+    [Arguments]    ${kw}    ${locator}
+    Open Browser    https://lemoteur.orange.fr/?bhv=web_fr&kw=${kw}&module=orange&target=orange&suggest=on    FF
+    Block    ${locator}
+    Header    ${locator}/div[1]    BOUTIQUE ORANGE
+    Title    ${locator}/div[2]/div[1]/a    boutique.orange.fr
+    Image    ${locator}/div[2]/div[2]/a/img    boutique.orange.fr
+    #!Image_Produit    ${locator}/div[2]/div[2]/a/img
+    !description    ${locator}/div[2]/div[3]/div
+    !siteLink    ${locator}
+    !homepage_Url    ${locator}/div[2]/div[5]
+    Close Browser
+
+verifier_shortcut_boutique_marque
+    [Arguments]    ${kw}    ${locator}
+    Open Browser    https://lemoteur.orange.fr/?bhv=web_fr&kw=${kw}&module=orange&target=orange&suggest=on    FF
+    Block    ${locator}
+    Header    ${locator}/div[1]    BOUTIQUE ORANGE
+    Title    ${locator}/div[2]/div[1]/a    boutique.orange.fr
+    Image    ${locator}/div[2]/div[2]/a/img    boutique.orange.fr
+    #!Image_Produit    ${locator}/div[2]/div[2]/a/img
+    !caracteristique_marque    ${locator}
+    !homepage_Url    ${locator}/div[3]/div
+    Close Browser

@@ -1,0 +1,23 @@
+*** Settings ***
+Resource          ../PageObject/pageObject_Abstract_Shortcut.txt
+
+*** Keywords ***
+Header
+    [Arguments]    ${locator}    ${text}
+    !Header    ${locator}    ${text}
+
+Block
+    [Arguments]    ${locator}
+    !Block    ${locator}
+
+Title
+    [Arguments]    ${locator}    ${location}
+    !Title    ${locator}    ${location}
+
+ImageTitle
+    [Arguments]    ${locator}
+    !ImageTitle    ${locator}
+
+Image
+    [Arguments]    ${locator}    ${location}
+    !Image    ${locator}    ${location}

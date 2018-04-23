@@ -1,0 +1,41 @@
+*** Settings ***
+Resource          ../Conf/conf_Abstract_Shortcut.txt
+
+*** Keywords ***
+!Header
+    [Arguments]    ${locator}    ${text}
+    Element Should Be Visible    xpath=${locator}    le titre n'est pas visible
+    Element Text Should Be    xpath=${locator}    ${text}    le header du shortcut n'est pas exacte
+
+!Block
+    [Arguments]    ${locator}
+    Wait Until Element Is Visible    xpath=${locator}    30    le block du shortcut n'est pas visible
+
+!Title
+    [Arguments]    ${locator}    ${location}
+    Element Should Be Visible    xpath=${locator}    le titre du shortcut n'est pas visible
+    Page Should Contain Link    xpath=${locator}
+    ${elem}    Get WebElement    css=.title
+    ${bg color}    Call Method    ${elem}    value_of_css_property    color
+    Should Be Equal As Strings    ${bg color}    rgb(0, 68, 187)    couleur n'est pas bleu
+    Click Element    xpath=${locator}
+    sleep    10s
+    Select Window    NEW
+    Location Should Contain    ${location}
+    Close Window
+    Select Window    MAIN
+
+!ImageTitle
+    [Arguments]    ${locator}
+    Element Should Be Visible    ${locator}
+
+!Image
+    [Arguments]    ${locator}    ${location}
+    Element Should Be Visible    ${locator}    l'image n'est pas visible
+    Page Should Contain Image    ${locator}
+    Click Element    ${locator}
+    Sleep    10s
+    Select Window    NEW
+    Location Should Contain    ${location}
+    Close Window
+    Select Window    MAIN

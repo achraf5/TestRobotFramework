@@ -1,0 +1,2 @@
+*** Settings ***
+Resource          ../Conf/conf_Shortcut_Tendance.txt

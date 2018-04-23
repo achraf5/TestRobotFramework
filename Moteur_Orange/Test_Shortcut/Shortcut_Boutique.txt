@@ -1,0 +1,14 @@
+*** Settings ***
+Suite Setup
+Suite Teardown    Close All Browsers
+Resource          Function/function_Shortcut_Boutique.txt
+
+*** Test Cases ***
+Test_Shortcut_Boutique_model
+    verifier_shortcut_boutique_model    samsung galaxy s8    //*[@id="resultId"]/div[4]/div
+
+Test_Shortcut_Boutique_forfait
+    verifier_shortcut_boutique_forfait    forfait orange    //*[@id="resultId"]/div[4]/div
+
+Test_Shortcut_Boutique_marque
+    verifier_shortcut_boutique_marque    samsung    //*[@id="resultId"]/div[4]/div

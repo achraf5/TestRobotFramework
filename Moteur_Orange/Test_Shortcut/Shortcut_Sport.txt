@@ -1,0 +1,7 @@
+*** Settings ***
+Suite Teardown    Close All Browsers
+Resource          Function/function_Shortcut_Sport.txt
+
+*** Test Cases ***
+Test_Shortcut_Sport
+    verifier_shortcut_sport    psg    //*[@id="resultId"]/div[5]/div

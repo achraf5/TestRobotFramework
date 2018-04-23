@@ -1,0 +1,8 @@
+*** Settings ***
+Resource          ../../Commun/Function/function_Abstract_Shortcut.txt
+Library           Selenium2Library
+Library           ExcelLibrary
+Library           BuiltIn
+
+*** Variables ***
+${xpath_block_shortcut_boutique}    //*[@id="resultId"]/div[4]/div

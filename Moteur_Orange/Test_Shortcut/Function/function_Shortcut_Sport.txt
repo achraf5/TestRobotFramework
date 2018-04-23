@@ -1,0 +1,12 @@
+*** Settings ***
+Resource          ../PageObject/pageObject_Shortcut_Sport.txt
+
+*** Keywords ***
+verifier_shortcut_sport
+    [Arguments]    ${kw}    ${locator}
+    Open Browser    https://lemoteur.orange.fr/?module=orange&bhv=web_fr&kw=${kw}&profil=orange2    FF
+    Block    ${locator}
+    Header    ${locator}/div[1]    CERCLE SPORTIF
+    Title    ${locator}/div[2]/div[1]/a    sports.orange.fr
+    ImageTitle    ${locator}/div[2]/div[2]/a/img
+    !description    ${locator}/div[2]/div[3]

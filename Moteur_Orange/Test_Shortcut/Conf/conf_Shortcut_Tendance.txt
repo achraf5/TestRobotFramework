@@ -1,0 +1,3 @@
+*** Settings ***
+Library           Selenium2Library
+Resource          ../../Commun/Function/function_Abstract_Shortcut.txt
